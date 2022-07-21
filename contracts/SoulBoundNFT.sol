@@ -15,6 +15,12 @@ contract SoulBoundNFT is
     ERC721Burnable,
     Ownable
 {
+    /// @notice Error thrown if the user tries to transfer nft
+    error Soulbound();
+
+    /// @notice Error thrown if the user try mint more than one nft
+    error Unique();
+
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -38,6 +44,7 @@ contract SoulBoundNFT is
         uint256 tokenId
     ) internal override(ERC721, ERC721Enumerable) {
         super._beforeTokenTransfer(from, to, tokenId);
+        if (from != address(0)) revert Soulbound();
     }
 
     function _burn(uint256 tokenId)
@@ -63,5 +70,19 @@ contract SoulBoundNFT is
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    //Disallowed for preventing gas waste
+    function _approve(address to, uint256 tokenId) internal override {
+        revert Soulbound();
+    }
+
+    //Disallowed for preventing gas waste
+    function _setApprovalForAll(
+        address owner,
+        address operator,
+        bool approved
+    ) internal override {
+        revert Soulbound();
     }
 }
