@@ -19,7 +19,9 @@ contract SoulBoundNFT is
 
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("SoliditySkill", "SBNFT") {}
+    constructor(string memory name, string memory abbrev)
+        ERC721(name, abbrev)
+    {}
 
     function safeMint(address to, string memory uri) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
