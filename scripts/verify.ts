@@ -11,15 +11,15 @@ async function main() {
   const name = 'SoulSkillOne';
   const abbrev = 'SSO';
 
-  // await hre.run('verify:verify', {
-  //   address: '0xDD57846c9D4D263c582868Fc54fb55E1E59A6bd6',
-  //   constructorArguments: [owner, admins],
-  // });
-
   await hre.run('verify:verify', {
-    address: '0xEdEe5fe2324C59eb104e7824292D908BA03289BE',
-    constructorArguments: [name, abbrev],
+    address: '0xd4Cc46FbBBAeF7a0Ff7e0f53B7E6c13842A45CB8',
+    constructorArguments: [owner, admins],
   });
+
+  // await hre.run('verify:verify', {
+  //   address: '0xEdEe5fe2324C59eb104e7824292D908BA03289BE',
+  //   constructorArguments: [name, abbrev],
+  // });
 }
 
 // We recommend this pattern to be able to use async/await everywhere
